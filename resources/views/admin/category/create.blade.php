@@ -8,7 +8,7 @@
 
     <div class="d-flex justify-content-center">
         <div class="card shadow-lg p-5" style="width: 450px; border-radius: 20px; background: #ffffff;">
-            <h2 class="text-center mb-4" style="font-weight: 600; color: #333;">Login</h2>
+            <h2 class="text-center mb-4" style="font-weight: 600; color: #333;">Add Category</h2>
 
             {{-- Display all validation errors --}}
             @if ($errors->any())
@@ -26,37 +26,22 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
-            <form method="POST" action="{{ route('login') }}">
+            <form action="{{ route('admin.category.store') }}" method="POST">
                 @csrf
 
-                {{-- Email --}}
                 <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" 
-                           value="{{ old('email') }}" placeholder="Enter your email">
-                    @error('email')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                {{-- Password --}}
-                <div class="mb-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" 
-                           placeholder="Enter your password">
-                    @error('password')
+                    <label class="form-label">Category Name</label>
+                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" 
+                           value="{{ old('name') }}" placeholder="Enter category name" required>
+                    @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100" 
                         style="background: linear-gradient(90deg, #6a11cb, #2575fc); border: none; font-weight: 600; padding: 12px 0; transition: 0.3s;">
-                    Login
+                    Add Category
                 </button>
-
-                <a href="{{ route('register') }}" class="btn btn-link w-100 mt-2 text-center" style="text-decoration: none;">
-                    Don't have an account? Register
-                </a>
             </form>
         </div>
     </div>
