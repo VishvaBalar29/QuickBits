@@ -6,9 +6,9 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\Admin\CategoryController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 Route::get('/dashboard', function () {
     return "Welcome, " . auth()->user()->username;
 })->middleware('auth');
