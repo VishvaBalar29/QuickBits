@@ -46,7 +46,7 @@
 
                     {{-- Users Dropdown --}}
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="usersDropdown" role="button">
+                        <a class="nav-link" href="{{ route('admin.users.index') }}" id="usersDropdown" role="button">
                             Users
                         </a>
                     </li>
