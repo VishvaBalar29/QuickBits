@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 </head>
 <body>
+    @extends('layouts.user')
+
+    @section('content')
     <div class="profile-container">
         <h1>My Profile</h1>
         <div class="profile-item">
@@ -21,5 +24,6 @@
             <label>Member Since:</label> <span>{{ $user->created_at->format('d M, Y') }}</span>
         </div>
     </div>
+    @endsection
 </body>
 </html>

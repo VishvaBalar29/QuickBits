@@ -2,88 +2,79 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'QuickBits')</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    {{-- Bootstrap CSS --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
-        /* Simple navbar styling */
         body {
             font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f8f9fa;
+            background-color: #f8f9fa;
         }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #fff;
-            padding: 10px 20px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .navbar .logo {
-            font-size: 24px;
+        .navbar-brand {
             font-weight: bold;
-            color: #333;
-            text-decoration: none;
-        }
-        .navbar ul {
-            display: flex;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            gap: 20px;
-        }
-        .navbar ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-        }
-        .navbar ul li a:hover {
-            color: #0275d8;
-        }
-        .navbar-right {
-            display: flex;
-            gap: 15px;
-            align-items: center;
+            font-size: 22px;
         }
         .profile-icon {
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             object-fit: cover;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <a href="{{ url('/') }}" class="logo">QuickBits</a>
 
-        <ul class="menu">
-            <li><a href="{{ url('/') }}">Home</a></li>
-            <li><a href="{{ url('/news?category=Sports') }}">Sports</a></li>
-            <li><a href="{{ url('/news?category=Technology') }}">Technology</a></li>
-            <li><a href="{{ url('/news?category=Politics') }}">Politics</a></li>
-            <li><a href="{{ url('/news?category=Entertainment') }}">Entertainment</a></li>
-        </ul>
+    {{-- Navbar --}}
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url('/') }}">QuickBits</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavUser" aria-controls="navbarNavUser" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="navbar-right">
-            @auth
-                <a href="{{ route('user.profile') }}">
-                    <img src="{{ asset(auth()->user()->profile_photo ?? 'uploads/users/default.png') }}" alt="Profile" class="profile-icon">
-                </a>
-                <a href="{{ route('logout') }}">Logout</a>
-            @else
-                <a href="{{ route('login') }}">Login</a>
-                <a href="{{ route('register') }}">Register</a>
-            @endauth
+            <div class="collapse navbar-collapse" id="navbarNavUser">
+                {{-- Left Menu --}}
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('/news?category=Sports') }}">Sports</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('/news?category=Technology') }}">Technology</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('/news?category=Politics') }}">Politics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('/news?category=Entertainment') }}">Entertainment</a></li>
+                </ul>
+
+                {{-- Right Menu --}}
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    @auth
+                        <li class="nav-item d-flex align-items-center">
+                            <a href="{{ route('user.profile') }}" class="nav-link p-0 me-2">
+                                <img src="{{ asset(auth()->user()->profile_photo ?? 'uploads/users/default.png') }}" alt="Profile" class="profile-icon">
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="{{ route('logout') }}">Logout</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">Register</a>
+                        </li>
+                    @endauth
+                </ul>
+            </div>
         </div>
     </nav>
 
-    <div class="container">
+    {{-- Page Content --}}
+    <div class="container mt-4">
         @yield('content')
     </div>
+
+    {{-- Bootstrap JS --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -38,14 +38,22 @@
                         <td>{{ $item->is_published ? 'Yes' : 'No' }}</td>
                         <td>{{ $item->created_at->format('d M Y, H:i') }}</td>
                         <td>
+                            <!-- View Button (same tab) -->
+                            <a href="{{ route('user.news.show', $item->id) }}" class="btn btn-sm btn-info">View</a>
+
+                            <!-- Edit Button -->
                             <a href="{{ route('admin.news.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
+
+                            <!-- Delete Button -->
                             <form action="{{ route('admin.news.destroy', $item->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" onclick="return confirm('Are you sure?')"
-                                    class="btn btn-sm btn-danger">Delete</button>
+                                <button type="submit" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger">
+                                    Delete
+                                </button>
                             </form>
                         </td>
+
                     </tr>
                 @endforeach
             </tbody>
@@ -54,7 +62,6 @@
         <div class="d-flex justify-content-center mt-3">
             {{ $news->links() }}
         </div>
-
 
     </div>
 @endsection

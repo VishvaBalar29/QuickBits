@@ -1,17 +1,12 @@
+@extends('layouts.user') 
 
+@section('title', 'News | QuickBits')
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>News</title>
+@section('content')
     <style>
         body {
             font-family: 'Poppins', sans-serif;
             background: #f8f9fa;
-            margin: 0;
-            padding: 20px;
         }
 
         .news-container {
@@ -37,16 +32,6 @@
             border-radius: 10px;
         }
 
-        .news-content {
-            flex: 1;
-        }
-
-        .news-content h2 {
-            margin: 0 0 10px;
-            color: #333;
-            cursor: pointer;
-        }
-
         .news-content h2 a {
             text-decoration: none;
             color: #333;
@@ -54,16 +39,6 @@
 
         .news-content h2 a:hover {
             color: #0275d8;
-        }
-
-        .news-content p {
-            color: #666;
-            margin: 0 0 10px;
-        }
-
-        .news-meta {
-            font-size: 13px;
-            color: #999;
         }
 
         .category-filter {
@@ -76,9 +51,7 @@
             font-size: 15px;
         }
     </style>
-</head>
 
-<body>
     <div class="news-container">
         {{-- Category Filter --}}
         <div class="category-filter">
@@ -106,19 +79,16 @@
                             <a href="{{ route('user.news.show', $item->id) }}">{{ $item->title }}</a>
                         </h2>
                         <p>{{ $item->short_desc }}</p>
-                        <div class="news-meta">
+                        <div class="news-meta text-muted" style="font-size:13px;">
                             Category: {{ $item->category->name ?? 'Uncategorized' }} |
                             Published: {{ $item->created_at->format('d M, Y') }}
                         </div>
-                        {{-- Comment link --}}
                         <div style="margin-top: 5px;">
-                            <a href="{{ route('user.news.show', $item->id) }}"
-                                style="font-size: 14px; color: #0275d8; text-decoration: none;">
+                            <a href="{{ route('user.news.show', $item->id) }}" style="font-size:14px; color:#0275d8; text-decoration:none;">
                                 Comment
                             </a>
                         </div>
                     </div>
-
                 </div>
             @endforeach
 
@@ -130,6 +100,4 @@
             <p>No news found{{ $categoryName ? " in category '$categoryName'" : '' }}.</p>
         @endif
     </div>
-</body>
-
-</html>
+@endsection

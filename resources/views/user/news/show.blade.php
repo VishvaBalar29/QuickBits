@@ -5,9 +5,17 @@
     <meta charset="UTF-8">
     <title>{{ $news->title }}</title>
     <link rel="stylesheet" href="{{ asset('css/news.css') }}">
+    <style>
+       body{
+        padding: 0;
+       }
+    </style>
 </head>
 
 <body>
+    @extends('layouts.user')
+
+    @section('content')
     <div class="news-container">
         <div class="news-main">
             @if($news->image)
@@ -69,6 +77,7 @@
 
         </div>
     </div>
+    @endsection
 </body>
 
 </html>

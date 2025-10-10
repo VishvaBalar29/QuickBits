@@ -1,10 +1,10 @@
-@extends('layouts.admin')
+@extends('layouts.user')
 
 @section('content')
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-<div style="min-height: 100vh; font-family: 'Poppins', sans-serif; background-color: #f5f5f5; padding-top: 40px;">
+<div style="min-height: 100vh; font-family: 'Poppins', sans-serif; padding-top: 40px;">
 
     <div class="d-flex justify-content-center">
         <div class="card shadow-lg p-5" style="width: 450px; border-radius: 20px; background: #ffffff;">
