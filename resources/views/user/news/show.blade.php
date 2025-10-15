@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ $news->title }}</title>
-    <link rel="stylesheet" href="{{ asset('css/news.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/user/news-detail.css') }}">
     <style>
        body{
         padding: 0;

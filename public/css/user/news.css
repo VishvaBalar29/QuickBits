@@ -1,0 +1,185 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.news-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.category-filter {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.category-filter select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+/* News Item */
+.news-item {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+    padding: 20px;
+    transition: transform 0.2s;
+}
+
+.news-item:hover {
+    transform: translateY(-3px);
+}
+
+/* ✅ Centered and Larger Image */
+.news-item img {
+    width: 280px; /* increased width */
+    height: 200px; /* increased height */
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 25px;
+    display: block;
+}
+
+/* ✅ News Content */
+.news-content {
+    flex: 1;
+    text-align: left;
+}
+
+.news-content h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.news-content h2 a {
+    text-decoration: none;
+    color: #333;
+}
+
+.news-content h2 a:hover {
+    color: #e63946;
+}
+
+/* ✅ Short description aligned to left */
+.news-content p {
+    text-align: left; /* previously center */
+    color: #555;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Meta Info */
+.news-meta {
+    font-size: 13px;
+    color: #777;
+    margin-top: 6px;
+}
+
+/* ✅ Comment Icon + Link */
+.news-actions {
+    margin-top: 12px;
+}
+
+.news-actions a {
+    text-decoration: none;
+    color: #e63946;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+}
+
+.news-actions a:hover {
+    color: #b71c1c;
+}
+
+.news-actions a::before {
+    content: "💬"; /* comment icon */
+    font-size: 16px;
+}
+
+/* Pagination */
+.pagination-wrapper {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.pagination-wrapper .pagination {
+    display: inline-flex;
+    gap: 8px;
+}
+/* Category Carousel */
+.category-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.category-scroll {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 5px 0;
+    scrollbar-width: none;
+}
+
+.category-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.category-btn {
+    background: linear-gradient(90deg, #dc3545, #b71c1c);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.3s ease;
+}
+
+.category-btn:hover {
+    background: #b71c1c;
+}
+
+.category-btn.active {
+    box-shadow: 0 0 0 2px #dc3545 inset;
+}
+
+/* Scroll Buttons */
+.scroll-btn {
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.scroll-btn:hover {
+    background: #b71c1c;
+}
+
+.scroll-btn.left {
+    margin-right: 8px;
+}
+
+.scroll-btn.right {
+    margin-left: 8px;
+}
+

@@ -9,7 +9,6 @@ use App\Models\Comment;
 class User extends Authenticatable
 {
     use Notifiable;
-
     protected $fillable = [
         'username', 'email', 'password', 'role'
     ];

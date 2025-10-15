@@ -9,15 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class RedirectIfAuthenticated
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            // Redirect to a common error page
             return redirect()->route('error.page')->with('error', 'You are already logged in.');
         }
         return $next($request);

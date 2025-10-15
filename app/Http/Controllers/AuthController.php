@@ -56,7 +56,7 @@ class AuthController extends Controller
             if ($user->role === 'admin') {
                 return redirect()->route('admin.news.index');
             } else {
-                return redirect('/');
+                return redirect('/news');
             }
         }
 

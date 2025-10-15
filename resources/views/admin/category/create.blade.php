@@ -1,67 +1,62 @@
 @extends('layouts.admin')
 
-@section('content')
-<!-- Google Fonts -->
+@push('styles')
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+@endpush
 
-<div style="min-height: 100vh; font-family: 'Poppins', sans-serif; background-color: #f5f5f5; padding-top: 40px;">
+@section('content')
+<div style="padding-top: 40px; font-family: 'Poppins', sans-serif; margin: 0; display: flex; justify-content: center;">
 
-    <div class="d-flex justify-content-center">
-        <div class="card shadow-lg p-5" style="width: 450px; border-radius: 20px; background: #ffffff;">
-            <h2 class="text-center mb-4" style="font-weight: 600; color: #333;">Add Category</h2>
+    <div class="card shadow-lg p-5" style="width: 500px; border-radius: 20px; background: #ffffff;">
+        <h2 class="text-center mb-4" style="font-weight: 600; color: #dc3545;">Add Category</h2>
 
-            {{-- Display all validation errors --}}
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+        @if ($errors->any())
+            <div class="alert alert-danger mb-3">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-            {{-- Display success message --}}
-            @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
+        @if (session('success'))
+            <div class="alert alert-success mb-3">{{ session('success') }}</div>
+        @endif
 
-            <form action="{{ route('admin.category.store') }}" method="POST">
-                @csrf
+        <form action="{{ route('admin.category.store') }}" method="POST">
+            @csrf
 
-                <div class="mb-3">
-                    <label class="form-label">Category Name</label>
-                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" 
-                           value="{{ old('name') }}" placeholder="Enter category name" required>
-                    @error('name')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
+            <div class="mb-3">
+                <label style="font-weight: 600;">Category Name</label>
+                <input type="text" name="name" placeholder="Enter category name" value="{{ old('name') }}" required
+                    style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px;">
+            </div>
 
-                <button type="submit" class="btn btn-primary w-100" 
-                        style="background: linear-gradient(90deg, #6a11cb, #2575fc); border: none; font-weight: 600; padding: 12px 0; transition: 0.3s;">
+            <div style="text-align: center;">
+                <button type="submit" class="btn" style="background: linear-gradient(90deg, #dc3545, #b71c1c); color: #fff; font-weight: 600; padding: 8px 16px; border-radius: 8px;">
                     Add Category
                 </button>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
 
 <style>
-    /* Placeholder smaller */
-    .card input::placeholder {
-        font-size: 0.85rem;
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-size: 14px;
     }
 
-    /* Focus effect */
-    .card input.form-control:focus {
-        box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
-        border-color: #2575fc;
-    }
-
-    /* Button hover */
-    .btn-primary:hover {
-        filter: brightness(1.1);
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-size: 14px;
     }
 
     body {

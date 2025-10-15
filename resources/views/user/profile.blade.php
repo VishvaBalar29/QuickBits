@@ -1,29 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My Profile</title>
-    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
-</head>
-<body>
-    @extends('layouts.user')
+@extends('layouts.user')
 
-    @section('content')
-    <div class="profile-container">
-        <h1>My Profile</h1>
-        <div class="profile-item">
-            <label>Username:</label> <span>{{ $user->username }}</span>
+@section('title', 'My Profile')
+
+@push('styles')
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+@endpush
+
+@section('content')
+<div style="padding-top: 40px; font-family: 'Poppins', sans-serif; margin: 0; display: flex; justify-content: center;">
+
+    <div class="card shadow-lg p-5" style="width: 500px; border-radius: 20px; background: #ffffff;">
+        <h2 class="text-center mb-4" style="font-weight: 600; color: #dc3545;">My Profile</h2>
+
+        <div style="margin-bottom: 15px;">
+            <label style="font-weight: 600;">Username:</label>
+            <div style="color: #333;">{{ $user->username }}</div>
         </div>
-        <div class="profile-item">
-            <label>Email:</label> <span>{{ $user->email }}</span>
+
+        <div style="margin-bottom: 15px;">
+            <label style="font-weight: 600;">Email:</label>
+            <div style="color: #333;">{{ $user->email }}</div>
         </div>
-        <div class="profile-item">
-            <label>Role:</label> <span>{{ ucfirst($user->role) }}</span>
+
+        <div style="margin-bottom: 15px;">
+            <label style="font-weight: 600;">Role:</label>
+            <div style="color: #333;">{{ ucfirst($user->role) }}</div>
         </div>
-        <div class="profile-item">
-            <label>Member Since:</label> <span>{{ $user->created_at->format('d M, Y') }}</span>
+
+        <div style="margin-bottom: 15px;">
+            <label style="font-weight: 600;">Member Since:</label>
+            <div style="color: #333;">{{ $user->created_at->format('d M, Y') }}</div>
         </div>
     </div>
-    @endsection
-</body>
-</html>
+</div>
+
+<style>
+    body {
+        margin: 0;
+    }
+</style>
+@endsection

@@ -8,18 +8,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class IsAdmin
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if user is logged in and role is admin
+         
         if (auth()->check() && auth()->user()->role === 'admin') {
             return $next($request);
         }
 
-        abort(403, 'Unauthorized'); // or redirect somewhere
+        abort(403, 'Unauthorized'); 
     }
 }

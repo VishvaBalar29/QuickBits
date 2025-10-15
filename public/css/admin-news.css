@@ -1,0 +1,142 @@
+/* ===== GLOBAL STYLES ===== */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9fafc;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== CONTAINER ===== */
+.news-container {
+    max-width: 1400px; /* increased from 1200px */
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.my-5 {
+    margin-top: 0rem !important;
+    margin-bottom: 3rem !important;
+}
+
+.news-container h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #dc3545;
+    margin-bottom: 30px;
+}
+
+/* ===== SUCCESS MESSAGE ===== */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+/* ===== ADD BUTTON ===== */
+.btn-add {
+    display: inline-block;
+    background: linear-gradient(90deg, #c82333, #dc3545);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: background 0.3s ease;
+}
+
+.btn-add:hover {
+    background: #b71c1c;
+}
+
+/* ===== TABLE ===== */
+.news-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.news-table thead {
+    background: #dc3545;
+    color: #fff;
+}
+
+.news-table th,
+.news-table td {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+.news-table th {
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.news-table td img {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* ===== ACTION ICONS ===== */
+.actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.actions i {
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+.actions i:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+    transition: all 0.2s ease;
+}
+
+
+.actions a span,
+.actions button.icon-delete {
+    font-size: 18px;
+    cursor: pointer;
+    color: #dc3545;
+    background: none;
+    border: none;
+    transition: color 0.2s ease;
+}
+
+.actions a span:hover,
+.actions button.icon-delete:hover {
+    color: #a71d2a;
+}
+
+/* ===== PAGINATION ===== */
+.pagination {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination nav {
+    font-size: 14px;
+}

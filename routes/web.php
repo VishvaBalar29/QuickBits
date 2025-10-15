@@ -1,27 +1,26 @@
 <?php
 
-use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Admin\NewsController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\IsAdmin;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\NewsController as UserNewsController;
 use App\Http\Controllers\User\CommentController;
-use App\Http\Controllers\Admin\UserController;
+use App\Models\Category;
+use App\Models\News;
 
+// Home route
+Route::redirect('/', '/news');
 
-Route::get('/', function () {
-    return view('home');
-});
-
-// for display error
+// Error page route
 Route::get('/error', function () {
     return view('errors.error');
 })->name('error.page');
 
-
-// Guest routes (only for non-logged-in users)
+// Guest routes (login/register)
 Route::middleware([RedirectIfAuthenticated::class])->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
@@ -30,7 +29,7 @@ Route::middleware([RedirectIfAuthenticated::class])->group(function () {
     Route::post('/register', [AuthController::class, 'register']);  
 });
 
-// profile url
+// Profile page
 Route::get('/profile', [AuthController::class, 'profile'])
     ->middleware('auth')
     ->name('user.profile');
@@ -38,50 +37,41 @@ Route::get('/profile', [AuthController::class, 'profile'])
 // Logout
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// user route
+// User news routes
 Route::get('/news', [UserNewsController::class, 'index'])->name('user.news.index');
 Route::get('/news/{id}', [UserNewsController::class, 'show'])->name('user.news.show');
-Route::post('/news/{id}/comment', [UserNewsController::class, 'addComment'])->name('user.news.comment');
 
-
-
-
-// comment controller
+// Comment routes
 Route::post('/news/{id}/comment', [CommentController::class, 'store'])
     ->middleware('auth')
     ->name('user.news.comment');
+
 Route::delete('/comment/{id}', [CommentController::class, 'destroy'])
     ->middleware('auth')
     ->name('user.comment.destroy');
 
-
-
-
-// admin routes
+// Admin routes
 Route::prefix('admin')->middleware(['auth', IsAdmin::class])->group(function () {
-    Route::get('/news', [NewsController::class, 'index'])->name('admin.news.index');
-    Route::get('/news/add', [NewsController::class, 'create'])->name('admin.news.create');
-    Route::post('/news', [NewsController::class, 'store'])->name('admin.news.store');
-    Route::get('/news/edit/{id}', [NewsController::class, 'edit'])->name('admin.news.edit');
-    Route::put('/news/{id}', [NewsController::class, 'update'])->name('admin.news.update');
-    Route::delete('/news/{id}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+
+    // News CRUD
+    Route::get('/news', [AdminNewsController::class, 'index'])->name('admin.news.index');
+    Route::get('/news/add', [AdminNewsController::class, 'create'])->name('admin.news.create');
+    Route::post('/news', [AdminNewsController::class, 'store'])->name('admin.news.store');
+    Route::get('/news/edit/{id}', [AdminNewsController::class, 'edit'])->name('admin.news.edit');
+    Route::put('/news/{id}', [AdminNewsController::class, 'update'])->name('admin.news.update');
+    Route::delete('/news/{id}', [AdminNewsController::class, 'destroy'])->name('admin.news.destroy');
+
+    // Category CRUD
+    Route::get('category', [CategoryController::class, 'index'])->name('admin.category.index');
+    Route::get('category/create', [CategoryController::class, 'create'])->name('admin.category.create');
+    Route::post('category/store', [CategoryController::class, 'store'])->name('admin.category.store');
+    Route::get('category/edit/{id}', [CategoryController::class, 'edit'])->name('admin.category.edit');
+    Route::put('category/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
+    Route::delete('category/delete/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
+
+    // Users CRUD
+    Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::post('/users', [UserController::class, 'index'])->name('admin.users.destroy');
+    // Route::get('/news/add', [AdminNewsController::class, 'create'])->name('admin.news.create');
+    // Route::resource('users', UserController::class)->only(['index', 'destroy']);
 });
-
-// category routes
-Route::prefix('admin')->middleware(['auth', IsAdmin::class])->name('admin.')->group(function () {
-    // Category routes
-    Route::get('category', [CategoryController::class, 'index'])->name('category.index');
-    Route::get('category/create', [CategoryController::class, 'create'])->name('category.create');
-    Route::post('category/store', [CategoryController::class, 'store'])->name('category.store');
-    Route::get('category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
-    Route::put('category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
-    Route::delete('category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
-});
-
-
-// user routes
-Route::prefix('admin')->middleware(['auth', IsAdmin::class])->name('admin.')->group(function () {
-    Route::resource('users', UserController::class)->only(['index', 'destroy']);
-});
-
-

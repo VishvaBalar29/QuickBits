@@ -12,7 +12,6 @@ class NewsController extends Controller
     // display news
     public function index()
     {
-        // Use paginate instead of get()
         $news = News::with('category')->orderBy('created_at', 'desc')->paginate(10); // 10 news per page
         return view('admin.news.index', compact('news'));
     }
@@ -54,14 +53,9 @@ class NewsController extends Controller
         return redirect()->route('admin.news.index')->with('success', 'News added successfully!');
     }
 
-    public function show(string $id)
-    {
-        //
-    }
-
     public function edit($id)
     {
-        $news = News::findOrFail($id);      // Get the news to edit
+        $news = News::findOrFail($id);     
         $categories = Category::all();       // Get all categories for the dropdown
 
         return view('admin.news.edit', compact('news', 'categories'));
